@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document index.html</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
+    <style>
+        .search input:focus {
+            box-shadow: 0 0 5px var(--theme-color, #1890ff33) !important;
+            border: 1px solid var(--theme-color, #40a9ff) !important;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+<script>
+        window.$docsify = {
+            basePath: "docs",
+            name: "文档",
+            // 以在站点的右上角添加 GitHub 角小组件。
+            repo: '',
+            // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
+            loadNavbar: false,
+            // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
+            coverpage: false,
+            // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
+            loadSidebar: true,
+            // 自定义侧边栏后默认不会再生成目录，设置生成目录的最大层级（建议配置为2-4）
+            // 侧边生成标题的级别，有 toc，可以不用这个
+            subMaxLevel: 0,
+            // 最大目录级别。
+            maxLevel: 3,
+            // 来自 docsify-sidebar-collapse 插件，sidebar 默认显示级别
+            sidebarDisplayLevel: 3, 
+
+            // 小屏设备下合并导航栏到侧边栏
+            mergeNavbar: true,
+
+            // 设置路由别名。支持正则表达式。
+            alias: {
+                "/.*/_sidebar.md": "/_sidebar.md", // 任何子目录的_sidebar都重定向到首页下面的_sidebar
+            },
+
+            // 跳转后自动到顶部
+            auto2top: true,
+
+            // PLUGINS
+            // ----------------------------------------------------------------
+            // 页面右侧toc
+            toc: {
+                tocMaxLevel: 3,
+                target: "h1, h2, h3, h4, h5, h6",
+            },
+            // 全文搜索
+            search: {
+                depth: 6,
+                maxAge: 86400000,// 过期时间，单位毫秒，默认一天
+                noData: "找不到结果",
+                placeholder: "搜索...",
+                // 支持本地化
+                placeholder: {
+                    '/zh-cn/': '搜索...',
+                    '/': 'Type to search'
+                },
+                // 避免搜索索引冲突,同一域下的多个网站之间
+                namespace: "Docsify",
+                hideOtherSidebarContent: false,
+            },
+            // 底部导航
+            pagination: {
+                previousText: "上一页",
+                nextText: "下一页",
+                // 允许导航到上一章/下一章。
+                crossChapter: false,
+                // 显示章节名称。
+                crossChapterText: false,
+            },
+            // 字数统计
+            count: {
+                countable: true,
+                position: "top",
+                margin: "10px",
+                float: "right",
+                fontsize: "0.9em",
+                color: "red",
+                language: "chinese",
+                localization: {
+                    words: "",
+                    minute: "",
+                },
+                isExpected: true,
+            },
+            copyCode: {
+                buttonText: {
+                    '/zh-cn/': "复制",
+                    "/": "Copy to clipboard"
+                },
+                successText: "复制成功",
+                errorText: "复制失败",
+            }
+        }
+    </script>
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+
+    <!-- 代码高亮 docsify 默认支持 CSS、JavaScript 和 HTML,  https://cdn.jsdelivr.net/npm/prismjs@1/components/ -->
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typoscript.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-jsx.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-http.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-icon.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scss.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-less.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-kotlin.min.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-rust.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go-module.min.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cmake.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-xml-doc.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+
+    <!-- 多tab支持 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
+
+    <!-- 代码复制 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+
+    <!-- 底部 上一页下一页 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/external-script.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
+
+    <!-- 全文搜索 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+
+    <!-- 图片放大缩小 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+
+    <!-- 字数统计 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+
+    <!-- 侧边栏目录折叠 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+
+    <!-- 页面右侧 TOC -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.2.1/dist/docsify-plugin-toc.min.js"></script>
+
+    <!-- emoji -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+</body>
+</html>

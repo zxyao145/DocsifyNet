@@ -1,0 +1,38 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Error",
+        "System": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "outputTemplate": "[{Timestamp:yyyy/MM/dd HH:mm:ss} {Level:u3}] {SourceContext:l} {Message:lj} {Exception}{NewLine}"
+        }
+      },
+      {
+        "Name": "Async",
+        "Args": {
+          "configure": [
+            {
+              "Name": "File",
+              "Args": {
+                "outputTemplate": "[{Timestamp:yyyy/MM/dd HH:mm:ss} {Level:u3}] {SourceContext:l} {Message:lj} {Exception}{NewLine}",
+                "rollingInterval": "Day",
+                "path": "logs/log-.log",
+                "fileSizeLimitBytes": 40960,
+                "buffered": false
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
