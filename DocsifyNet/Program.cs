@@ -68,6 +68,7 @@ try
 }
 catch (Exception e)
 {
+    Console.WriteLine($"run failed: {e.Message}");
     File.WriteAllTextAsync("/DocsifyNet-ERROR!!!.txt", e.Message);
 }
 
