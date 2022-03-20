@@ -13,8 +13,6 @@ try
     {
         var curPath = Environment.CurrentDirectory;
         var basePath = Path.GetDirectoryName(AppContext.BaseDirectory);
-        Console.WriteLine(curPath);
-        Console.WriteLine(basePath);
         bool isService = (curPath != basePath);
        
         Console.WriteLine($"is windows service: {isService}");
