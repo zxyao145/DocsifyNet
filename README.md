@@ -1,7 +1,7 @@
 # DocsifyNet
-Docsify base on .NET 6.
+Docsify host on .NET 6. 
 
-Build a document site or knowledge base with one click.
+Build a document site or knowledge base with one click, out of the box.
 
 
 # usage
