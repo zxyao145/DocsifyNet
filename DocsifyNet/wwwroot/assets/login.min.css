@@ -1,0 +1,85 @@
+html {
+  font-size: 16px;
+}
+
+.fullScreen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(/assets/dist/images/account-bg.svg) center/100% no-repeat #f0f2f5;
+  overflow-x: hidden;
+}
+
+span.input-group-addon {
+  border: 1px solid #ccc;
+  border-right: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+  padding-left: 12px;
+  padding-right: 12px;
+  align-items: center;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+#loginForm {
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  padding: 1.5rem;
+}
+@media (max-width: 767.8px) {
+  #loginForm {
+    width: 80%;
+    min-width: 20rem;
+    margin-top: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  #loginForm {
+    width: 24rem;
+    margin-top: 7rem;
+  }
+}
+#loginForm > h2 {
+  text-align: center;
+  border: none;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#loginForm > h2 img {
+  width: 38px;
+  height: 38px;
+  display: inline-block;
+  margin-right: 0;
+}
+#loginForm .form-group {
+  margin-bottom: 1.5rem;
+}
+#loginForm span.input-group-addon {
+  background-color: #fff;
+}
+#loginForm button[type=submit] {
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  /*background: whitesmoke;*/
+  color: #fff;
+  background-color: #1890ff;
+  border: none;
+}
+#loginForm button[type=submit]:hover {
+  background-color: #40a9ff;
+}
+
+/*# sourceMappingURL=login.min.css.map*/

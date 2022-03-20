@@ -1,0 +1,33 @@
+{
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Warning",
+      "Override": {
+        "Microsoft": "Error",
+        "System": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console"
+      },
+      {
+        "Name": "Async",
+        "Args": {
+          "configure": [
+            {
+              "Name": "File",
+              "Args": {
+                "rollingInterval": "Day",
+                "path": "logs/log-.log",
+                "fileSizeLimitBytes": 40960,
+                "buffered": false
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
