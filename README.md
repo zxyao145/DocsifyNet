@@ -17,7 +17,7 @@ Run `#uninstall.bat`, DocsifyNetService will delete from windows service.
 Download `FrameworkDependency.zip`, and run `dotnet DocsifyNet.dll`.
 
 ## Visit
-You can visit it by `http://localhost:5177`. And you can change is in `appsettings.json` config file.
+You can visit it by `http://localhost:5177`. And you can change it in `appsettings.json` config file.
 
 
 ## write md fild
