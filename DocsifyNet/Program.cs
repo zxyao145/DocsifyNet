@@ -1,25 +1,35 @@
 using DocsifyNet;
 using DocsifyNet.Exts;
 using DocsifyNet.Module;
+using System.Diagnostics;
+using System.ServiceProcess;
 
 #region mini api
 try
 {
-    WebApplicationBuilder builder;
-    if(Environment.OSVersion.Platform == PlatformID.Win32NT)
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+    if (Environment.OSVersion.Platform == PlatformID.Win32NT)
     {
-        var webApplicationOptions = new WebApplicationOptions()
+        var curPath = Environment.CurrentDirectory;
+        var basePath = Path.GetDirectoryName(AppContext.BaseDirectory);
+        Console.WriteLine(curPath);
+        Console.WriteLine(basePath);
+        bool isService = (curPath != basePath);
+       
+        Console.WriteLine($"is windows service: {isService}");
+
+        if (isService)
         {
-            ContentRootPath = AppContext.BaseDirectory,
-            Args = args,
-            ApplicationName = System.Diagnostics.Process.GetCurrentProcess().ProcessName
-        };
-        builder = WebApplication.CreateBuilder(webApplicationOptions);
-        builder.Host.UseWindowsService();
-    }
-    else
-    {
-        builder = WebApplication.CreateBuilder(args);
+            var webApplicationOptions = new WebApplicationOptions()
+            {
+                ContentRootPath = AppContext.BaseDirectory,
+                Args = args,
+                ApplicationName = System.Diagnostics.Process.GetCurrentProcess().ProcessName
+            };
+            builder = WebApplication.CreateBuilder(webApplicationOptions);
+            builder.Host.UseWindowsService();
+        }
     }
    
     builder.Host
