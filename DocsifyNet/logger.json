@@ -1,7 +1,7 @@
 {
   "Serilog": {
     "MinimumLevel": {
-      "Default": "Warning",
+      "Default": "Information",
       "Override": {
         "Microsoft": "Error",
         "System": "Warning",
@@ -10,7 +10,10 @@
     },
     "WriteTo": [
       {
-        "Name": "Console"
+        "Name": "Console",
+        "Args": {
+          "outputTemplate": "[{Timestamp:yyyy/MM/dd HH:mm:ss} {Level:u3}] {SourceContext:l} {Message:lj} {Exception}{NewLine}"
+        }
       },
       {
         "Name": "Async",
@@ -19,6 +22,7 @@
             {
               "Name": "File",
               "Args": {
+                "outputTemplate": "[{Timestamp:yyyy/MM/dd HH:mm:ss} {Level:u3}] {SourceContext:l} {Message:lj} {Exception}{NewLine}",
                 "rollingInterval": "Day",
                 "path": "logs/log-.log",
                 "fileSizeLimitBytes": 40960,

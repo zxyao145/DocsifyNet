@@ -46,6 +46,7 @@ namespace DocsifyNet.Exts
 
                     if (cfg != null)
                     {
+                        Log.Logger.Information("logger logger.json");
                         loggerConfiguration
                             .ReadFrom.Configuration(cfg);
                     }

@@ -1,51 +1,75 @@
+using DocsifyNet;
 using DocsifyNet.Exts;
 using DocsifyNet.Module;
 
-
-var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseWindowsService();
-builder.Host.UseLoggingOfSerilog();
-
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.Configure<SidebarCreatorOption>(builder.Configuration.GetSection("SidebarCreatorOption"));
-builder.Services.AddSingleton<SidebarCreator>();
-
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+#region mini api
+try
 {
-    app.UseDeveloperExceptionPage();
+    WebApplicationBuilder builder;
+    if(Environment.OSVersion.Platform == PlatformID.Win32NT)
+    {
+        var webApplicationOptions = new WebApplicationOptions()
+        {
+            ContentRootPath = AppContext.BaseDirectory,
+            Args = args,
+            ApplicationName = System.Diagnostics.Process.GetCurrentProcess().ProcessName
+        };
+        builder = WebApplication.CreateBuilder(webApplicationOptions);
+        builder.Host.UseWindowsService();
+    }
+    else
+    {
+        builder = WebApplication.CreateBuilder(args);
+    }
+   
+    builder.Host
+        .ConfigureLogging(options => options.ClearProviders())
+        .UseLoggingOfSerilog();
+
+    // Add services to the container.
+    builder.Services.AddRazorPages();
+    builder.Services.Configure<SidebarCreatorOption>(builder.Configuration.GetSection("SidebarCreatorOption"));
+    builder.Services.AddSingleton<SidebarCreator>();
+
+
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Error");
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    }
+
+    // app.UseStatusCodePages(System.Net.Mime.MediaTypeNames.Text.Plain, "Status Code Page: {0}");
+
+    // 全局异常捕获
+    app.UseMiddleware<ErrorHandlingMiddleware>();
+
+    ConfigHttps(app);
+
+    app.UseStaticFiles();
+    app.UseFileServer();
+
+    app.UseRouting();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+    app.MapRazorPages();
+
+    _ = WatchDocsDir(app);
+    app.Run();
+
 }
-else 
+catch (Exception e)
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    File.WriteAllTextAsync("/DocsifyNet-ERROR!!!.txt", e.Message);
 }
-
-// app.UseStatusCodePages(System.Net.Mime.MediaTypeNames.Text.Plain, "Status Code Page: {0}");
-
-// 全局异常捕获
-app.UseMiddleware<ErrorHandlingMiddleware>();
-
-ConfigHttps(app);
-
-app.UseStaticFiles();
-app.UseFileServer();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllers();
-app.MapRazorPages();
-
-_ = WatchDocsDir(app);
-app.Run();
-
 
 
 /// <summary>
@@ -75,7 +99,7 @@ async Task WatchDocsDir(WebApplication webApp)
     DateTime lastRenGen = DateTime.Now;
     async void ReGenSideBar(object sender, FileSystemEventArgs e)
     {
-        if((DateTime.Now - lastRenGen) < TimeSpan.FromSeconds(3))
+        if ((DateTime.Now - lastRenGen) < TimeSpan.FromSeconds(3))
         {
             return;
         }
@@ -126,3 +150,21 @@ async Task WatchDocsDir(WebApplication webApp)
         fileSystemWatcher.Renamed -= ReGenSideBar;
     });
 }
+
+#endregion
+
+#region classic
+//var hostBuilder = Host.CreateDefaultBuilder(args)
+//    .UseWindowsService()
+//     .ConfigureAppConfiguration((hostingContext, config) =>
+//     {
+//         config.AddJsonFile("appsettings.json");
+//     })
+//    .ConfigureLogging(options => options.ClearProviders())
+//    .UseLoggingOfSerilog()
+//    .ConfigureWebHostDefaults(webBuilder =>
+//    {
+//        webBuilder.UseStartup<Startup>();
+//    });
+//await hostBuilder.Build().RunAsync(); 
+#endregion
