@@ -39,10 +39,6 @@ You can also manually trigger it to generate the _sidebar.md file by accessing `
 1. All folders with names starting with `.` or `_` will be ignored
 2. directory named `assets` will be ignore.
 
-#  Other
-
-`wwwroot\pages\404.html` is the default HTTP 404 file.
-
 
 # Reference
 
